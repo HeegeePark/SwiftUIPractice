@@ -11,6 +11,7 @@
 		4F71AECE2BCD483B00A4E210 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4F71AECD2BCD483B00A4E210 /* Assets.xcassets */; };
 		4F71AED12BCD483B00A4E210 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4F71AED02BCD483B00A4E210 /* Preview Assets.xcassets */; };
 		4F71AEDB2BCD48E200A4E210 /* AgreementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F71AEDA2BCD48E200A4E210 /* AgreementView.swift */; };
+		4F71AEE22BCE3C9000A4E210 /* QuizView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F71AEE12BCE3C9000A4E210 /* QuizView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +20,7 @@
 		4F71AECD2BCD483B00A4E210 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4F71AED02BCD483B00A4E210 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		4F71AEDA2BCD48E200A4E210 /* AgreementView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgreementView.swift; sourceTree = "<group>"; };
+		4F71AEE12BCE3C9000A4E210 /* QuizView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,6 +73,7 @@
 			isa = PBXGroup;
 			children = (
 				4F71AEDA2BCD48E200A4E210 /* AgreementView.swift */,
+				4F71AEE12BCE3C9000A4E210 /* QuizView.swift */,
 			);
 			path = Toss;
 			sourceTree = "<group>";
@@ -147,6 +150,7 @@
 			files = (
 				4F71AECA2BCD483700A4E210 /* SwiftUIPracticeApp.swift in Sources */,
 				4F71AEDB2BCD48E200A4E210 /* AgreementView.swift in Sources */,
+				4F71AEE22BCE3C9000A4E210 /* QuizView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
