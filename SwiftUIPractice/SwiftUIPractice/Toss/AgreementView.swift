@@ -35,10 +35,9 @@ struct AgreementView: View {
     }
     
     var fireworkImage: some View {
-        Image(.firework)
-            .resizable()
-            .scaledToFit()
-            .frame(width: 50, height: 50)
+        ImageView(image: .firework,
+                  width: 50,
+                  height: 50)
     }
     
     var title: some View {
@@ -102,14 +101,12 @@ struct BenefitView: View {
     
     var body: some View {
         HStack {
-            Image(image)
-                .resizable()
-                .scaledToFit()
-                .frame(width: 30, height: 30)
+            ImageView(image: image,
+                      width: 35,
+                      height: 35)
             
             Text(text)
-                .font(.system(size: 16))
-                .foregroundStyle(.secondary)
+                .asSubText()
         }
     }
 }

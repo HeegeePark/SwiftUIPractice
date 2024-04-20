@@ -13,78 +13,91 @@ struct QuizView: View {
             Color.black.ignoresSafeArea()
             
             VStack(alignment: .leading, spacing: 20) {
-                HStack {
-                    Image(.ice)
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: 50, height: 50)
-                    Spacer()
-                }
-                .frame(maxWidth: .infinity, alignment: .leading)
-                
-                Text("등기부등본은 집주인만 발급받을 수 있다?")
-                    .font(.title2)
-                    .bold()
-                    .foregroundStyle(.foreground)
-                
-                Text("매일 푸는 금융 퀴즈 290,300명 참여중")
-                    .font(.callout)
-                    .foregroundStyle(.secondary)
-                
-                HStack(spacing: 16) {
-                    Button {} label: {
-                        VStack(spacing: 0) {
-                            Image(.o)
-                                .resizable()
-                                .scaledToFit()
-                                .frame(width: 35, height: 35)
-                            
-                            Text("그렇다")
-                                .padding()
-                                .font(.callout)
-                                .bold()
-                                .foregroundStyle(.blue)
-                        }
-                        .padding(EdgeInsets(top: 20, leading: 0, bottom: 12, trailing: 0))
-                    }
-                    .frame(maxWidth: .infinity)
-                    .background(
-                        RoundedRectangle(cornerRadius: 16)
-                            .fill(.blue.opacity(0.2))
-                            .frame(maxWidth: .infinity)
-                    )
-                    
-                    Button {} label: {
-                        VStack(spacing: 0) {
-                            Image(.x)
-                                .resizable()
-                                .scaledToFit()
-                                .frame(width: 35, height: 35)
-                            
-                            Text("아니다")
-                                .padding()
-                                .font(.callout)
-                                .bold()
-                                .foregroundStyle(.red)
-                        }
-                        .padding(EdgeInsets(top: 20, leading: 0, bottom: 12, trailing: 0))
-                    }
-                    .frame(maxWidth: .infinity)
-                    .background(
-                        RoundedRectangle(cornerRadius: 16)
-                            .fill(.red.opacity(0.15))
-                            .frame(maxWidth: .infinity)
-                    )
-                }
-                .frame(maxWidth: .infinity)
+                iceImageArea
+                textArea(text: "등기부등본은 집주인만 발급받을 수 있다?", style: .title)
+                textArea(text: "매일 푸는 금융 퀴즈 290,300명 참여중", style: .sub)
+                AnswerSelectArea()
             }
             .padding(20)
-            .background(
-                RoundedRectangle(cornerRadius: 16)
-                    .fill(.secondBackground)
-            )
+            .asRoundedSecondaryBackround()
             .padding()
             
+        }
+    }
+    
+    var iceImageArea: some View {
+        HStack {
+            ImageView(image: .ice,
+                      width: 50,
+                      height: 50)
+            Spacer()
+        }
+        .frame(maxWidth: .infinity, alignment: .leading)
+    }
+    
+    func textArea(text: String, style: TextStyle) -> some View {
+        style.set(content: Text(text))
+    }
+}
+
+struct AnswerSelectArea: View {
+    var body: some View {
+        HStack(spacing: 16) {
+            buttonView(.o)
+            buttonView(.x)
+        }
+        .frame(maxWidth: .infinity)
+    }
+    
+    func buttonView(_ type: QuizType) -> some View {
+        Button {} label: {
+            VStack(spacing: 0) {
+                ImageView(image: type.image,
+                          width: 35,
+                          height: 35)
+                
+                Text(type.text)
+                    .padding()
+                    .font(.callout)
+                    .bold()
+                    .foregroundStyle(type.foregroundColor)
+            }
+            .padding(EdgeInsets(top: 20, leading: 0, bottom: 12, trailing: 0))
+        }
+        .frame(maxWidth: .infinity)
+        .asRoundedSecondaryBackround(type.backgroundColor)
+    }
+    
+    enum QuizType {
+        case o
+        case x
+        
+        var image: ImageResource {
+            switch self {
+            case .o: .o
+            case .x: .x
+            }
+        }
+        
+        var text: String {
+            switch self {
+            case .o: "그렇다"
+            case .x: "아니다"
+            }
+        }
+        
+        var foregroundColor: Color {
+            switch self {
+            case .o: .blue
+            case .x: .red
+            }
+        }
+        
+        var backgroundColor: Color {
+            switch self {
+            case .o: .blue.opacity(0.2)
+            case .x: .red.opacity(0.15)
+            }
         }
     }
 }
