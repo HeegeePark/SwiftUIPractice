@@ -12,50 +12,26 @@ struct MenuView: View {
         ZStack {
             Color.black.ignoresSafeArea()
             
-            HStack(spacing: -16) {
-                Form {
-                    Section {
-                        Image(.bank)
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 35, height: 35)
-                        
-                        Text("토스뱅크")
-                            .bold()
-                    }
-                    .listRowSeparator(.hidden)
-                    .frame(maxWidth: .infinity, alignment: .center)
-                }
-                
-                Form {
-                    Section {
-                        Image(.graph)
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 35, height: 35)
-                        
-                        Text("토스증권")
-                            .bold()
-                    }
-                    .listRowSeparator(.hidden)
-                    .frame(maxWidth: .infinity, alignment: .center)
-                }
-                
-                Form {
-                    Section {
-                        Image(.headset)
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 35, height: 35)
-                        
-                        Text("고객센터")
-                            .bold()
-                    }
-                    .listRowSeparator(.hidden)
-                    .frame(maxWidth: .infinity, alignment: .center)
-                }
+            HStack(spacing: 10) {
+                setMenu(image: .bank, text: "토스뱅크")
+                setMenu(image: .graph, text: "토스증권")
+                setMenu(image: .headset, text: "고객센터")
             }
+            
         }
+    }
+    
+    func setMenu(image: ImageResource, text: String) -> some View {
+        VStack {
+            ImageView(image: image,
+                      width: 35,
+                      height: 35)
+            
+            Text(text)
+        }
+        .padding()
+        .asMaxWidthBackground()
+        .asRoundedSecondaryBackround()
     }
 }
 
