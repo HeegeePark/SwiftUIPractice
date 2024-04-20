@@ -57,11 +57,12 @@ struct TGTitleText: ViewModifier {
 
 struct RoundedSecondaryBackround: ViewModifier {
     let color: Color
+    let radius: CGFloat
     
     func body(content: Content) -> some View {
         content
             .background(
-                RoundedRectangle(cornerRadius: 16)
+                RoundedRectangle(cornerRadius: radius)
                     .fill(color)
             )
     }
@@ -98,8 +99,8 @@ extension View {
         modifier(TGTitleText())
     }
     
-    func asRoundedSecondaryBackround(_ color: Color = Color.secondBackground) -> some View {
-        modifier(RoundedSecondaryBackround(color: color))
+    func asRoundedSecondaryBackround(_ color: Color = Color.secondBackground, radius: CGFloat = 16) -> some View {
+        modifier(RoundedSecondaryBackround(color: color, radius: radius))
     }
     
     func asRoundedStrokeBackround(_ color: Color, radius: CGFloat = 16, lineWidth: CGFloat = 1) -> some View {

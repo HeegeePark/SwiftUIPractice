@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		4F32212D2BD294640056F0FD /* CustomModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F32212C2BD294640056F0FD /* CustomModifier.swift */; };
 		4F3221302BD3A49D0056F0FD /* TamagochiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F32212F2BD3A49D0056F0FD /* TamagochiView.swift */; };
+		4F3221332BD3ECED0056F0FD /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F3221322BD3ECED0056F0FD /* SignUpView.swift */; };
+		4F3221352BD3F6B50056F0FD /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F3221342BD3F6B50056F0FD /* HomeView.swift */; };
 		4F71AECA2BCD483700A4E210 /* SwiftUIPracticeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F71AEC92BCD483700A4E210 /* SwiftUIPracticeApp.swift */; };
 		4F71AECE2BCD483B00A4E210 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4F71AECD2BCD483B00A4E210 /* Assets.xcassets */; };
 		4F71AED12BCD483B00A4E210 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4F71AED02BCD483B00A4E210 /* Preview Assets.xcassets */; };
@@ -20,6 +22,8 @@
 /* Begin PBXFileReference section */
 		4F32212C2BD294640056F0FD /* CustomModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomModifier.swift; sourceTree = "<group>"; };
 		4F32212F2BD3A49D0056F0FD /* TamagochiView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TamagochiView.swift; sourceTree = "<group>"; };
+		4F3221322BD3ECED0056F0FD /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
+		4F3221342BD3F6B50056F0FD /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		4F71AEC62BCD483700A4E210 /* SwiftUIPractice.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftUIPractice.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F71AEC92BCD483700A4E210 /* SwiftUIPracticeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIPracticeApp.swift; sourceTree = "<group>"; };
 		4F71AECD2BCD483B00A4E210 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -48,6 +52,15 @@
 			path = Tamagochi;
 			sourceTree = "<group>";
 		};
+		4F3221312BD3EC990056F0FD /* Kiziflix */ = {
+			isa = PBXGroup;
+			children = (
+				4F3221322BD3ECED0056F0FD /* SignUpView.swift */,
+				4F3221342BD3F6B50056F0FD /* HomeView.swift */,
+			);
+			path = Kiziflix;
+			sourceTree = "<group>";
+		};
 		4F71AEBD2BCD483700A4E210 = {
 			isa = PBXGroup;
 			children = (
@@ -67,10 +80,11 @@
 		4F71AEC82BCD483700A4E210 /* SwiftUIPractice */ = {
 			isa = PBXGroup;
 			children = (
+				4F3221312BD3EC990056F0FD /* Kiziflix */,
 				4F32212E2BD3A48E0056F0FD /* Tamagochi */,
-				4F32212C2BD294640056F0FD /* CustomModifier.swift */,
 				4F71AED72BCD486800A4E210 /* Toss */,
 				4F71AEC92BCD483700A4E210 /* SwiftUIPracticeApp.swift */,
+				4F32212C2BD294640056F0FD /* CustomModifier.swift */,
 				4F71AECD2BCD483B00A4E210 /* Assets.xcassets */,
 				4F71AECF2BCD483B00A4E210 /* Preview Content */,
 			);
@@ -168,7 +182,9 @@
 				4F71AECA2BCD483700A4E210 /* SwiftUIPracticeApp.swift in Sources */,
 				4F32212D2BD294640056F0FD /* CustomModifier.swift in Sources */,
 				4F3221302BD3A49D0056F0FD /* TamagochiView.swift in Sources */,
+				4F3221332BD3ECED0056F0FD /* SignUpView.swift in Sources */,
 				4F71AEE42BCF41E000A4E210 /* MenuView.swift in Sources */,
+				4F3221352BD3F6B50056F0FD /* HomeView.swift in Sources */,
 				4F71AEDB2BCD48E200A4E210 /* AgreementView.swift in Sources */,
 				4F71AEE22BCE3C9000A4E210 /* QuizView.swift in Sources */,
 			);
