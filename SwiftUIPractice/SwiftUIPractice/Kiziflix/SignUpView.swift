@@ -28,7 +28,7 @@ struct SignUpView: View {
             }
             .padding()
             .fullScreenCover(isPresented: $isPresented) {
-                HomeView(nickname: inputNickname)
+                MainView(nickname: inputNickname)
             }
         }
     }
