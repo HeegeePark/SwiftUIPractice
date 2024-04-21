@@ -18,6 +18,9 @@ struct HomeView: View {
                     VStack {
                         headerView
                         previewAreaView
+                        PosterStackView(title: "몰아보기 추천! SF & 판타지 시리즈")
+                        PosterStackView(title: "초자연 현상을 다룬 한국 시리즈")
+                        PosterStackView(title: "흥미진진한 한국 드라마")
                     }
                     .frame(maxWidth: .infinity)
                     .frame(maxHeight: .infinity)
@@ -134,7 +137,7 @@ struct HomeView: View {
                 setPreviewImageView(image: Image(.poster))
             }
         }
-        .padding(20)
+        .padding(10)
     }
     
     func setPreviewImageView(image: Image) -> some View {
@@ -147,6 +150,8 @@ struct HomeView: View {
                     .stroke(.gray, lineWidth: 3)
             )
     }
+    
+    
 }
 
 struct TabBarItemView: View {
@@ -158,6 +163,39 @@ struct TabBarItemView: View {
         } label: {
             image
         }
+    }
+}
+
+struct PosterStackView: View {
+    let title: String
+    
+    var body: some View {
+        VStack(alignment: .leading) {
+            Text(title)
+                .padding(4)
+            ScrollView(.horizontal) {
+                HStack(spacing: 8) {
+                    PosterImageView(image: .poster)
+                    PosterImageView(image: .poster)
+                    PosterImageView(image: .poster)
+                    PosterImageView(image: .poster)
+                    PosterImageView(image: .poster)
+                }
+            }
+            .scrollIndicators(.hidden)
+        }
+    }
+}
+
+struct PosterImageView: View {
+    let image: ImageResource
+    
+    var body: some View {
+        Image(image)
+            .resizable()
+            .scaledToFill()
+            .frame(width: 100, height: 160)
+            .clipShape(.rect(cornerRadius: 4))
     }
 }
 
