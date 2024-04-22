@@ -175,11 +175,16 @@ struct PosterStackView: View {
                 .padding(4)
             ScrollView(.horizontal) {
                 HStack(spacing: 8) {
-                    PosterImageView(image: .poster)
-                    PosterImageView(image: .poster)
-                    PosterImageView(image: .poster)
-                    PosterImageView(image: .poster)
-                    PosterImageView(image: .poster)
+                    PosterImageView()
+                    PosterImageView()
+                    PosterImageView()
+                    PosterImageView()
+                    PosterImageView()
+                    PosterImageView()
+                    PosterImageView()
+                    PosterImageView()
+                    PosterImageView()
+                    PosterImageView()
                 }
             }
             .scrollIndicators(.hidden)
@@ -187,15 +192,30 @@ struct PosterStackView: View {
     }
 }
 
-struct PosterImageView: View {
-    let image: ImageResource
-    
+struct PosterImageView: View {    
+    let url = URL(string: "https://picsum.photos/200/300")
     var body: some View {
-        Image(image)
-            .resizable()
-            .scaledToFill()
-            .frame(width: 100, height: 160)
-            .clipShape(.rect(cornerRadius: 4))
+        AsyncImage(url: url) { data in
+            switch data {
+            case .empty:
+                ProgressView()
+                    .frame(width: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/, height: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/)
+            case .success(let image):
+                image
+                    .resizable()
+                    .scaledToFill()
+                    .frame(width: 100, height: 160)
+                    .clipShape(.rect(cornerRadius: 4))
+            case .failure(let error):
+                Color.white
+                    .frame(width: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/, height: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/)
+                    .clipShape(.circle)
+            @unknown default:
+                Color.white
+                    .frame(width: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/, height: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/)
+                    .clipShape(.circle)
+            }
+        }
     }
 }
 
