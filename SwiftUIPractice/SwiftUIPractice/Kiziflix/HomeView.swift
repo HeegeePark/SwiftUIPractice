@@ -197,7 +197,7 @@ struct PosterSectionView<T: View>: View {
         self.images = images()
     }
     
-    let title: String
+    @State private var title: String
     let images: [T]
     
     var body: some View {
@@ -209,7 +209,7 @@ struct PosterSectionView<T: View>: View {
                     ForEach(0..<images.count) { idx in
                         NavigationLink {
                             // TODO: 상세화면에서 랜덤이미지 호출 막기
-                            HomeDetailView(sectionTitle: title) {
+                            HomeDetailView(sectionTitle: $title) {
                                 images[idx]
                             }
                         } label: {

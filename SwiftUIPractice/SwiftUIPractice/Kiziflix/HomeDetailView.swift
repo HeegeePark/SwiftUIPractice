@@ -8,27 +8,22 @@
 import SwiftUI
 
 struct HomeDetailView<T: View>: View {
-    let sectionTitle: String
+    @Binding var sectionTitle: String
     let image: T
     
     init(
-        sectionTitle: String,
-        @ViewBuilder image: @escaping () -> T) {
-        self.sectionTitle = sectionTitle
+        sectionTitle: Binding<String>,
+        @ViewBuilder image: @escaping () -> T
+    ) {
+        self._sectionTitle = sectionTitle
         self.image = image()
     }
     
     var body: some View {
         VStack {
             image
-            Text(sectionTitle)
+            TextField(sectionTitle, text: $sectionTitle)
+                .multilineTextAlignment(.center)
         }
     }
-}
-
-#Preview {
-    HomeDetailView(
-        sectionTitle: "첫번째 섹션",
-        image: { Image(systemName: "star") }
-    )
 }
