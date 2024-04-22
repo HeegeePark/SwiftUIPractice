@@ -9,6 +9,20 @@ import SwiftUI
 
 struct HomeView: View {
     let nickname: String
+//    let sections = [
+//        KiziFlixSection(
+//            title: "몰아보기 추천! SF & 판타지 시리즈",
+//            images: { RandomImage.randomImages(count: 5) }
+//        ),
+//        KiziFlixSection(
+//            title: "초자연 현상을 다룬 한국 시리즈",
+//            images: { RandomImage.randomImages(count: 5) }
+//        ),
+//        KiziFlixSection(
+//            title: "흥미진진한 한국 드라마",
+//            images: { RandomImage.randomImages(count: 5) }
+//        )
+//    ]
     
     var body: some View {
         NavigationView {
@@ -18,9 +32,22 @@ struct HomeView: View {
                     VStack {
                         headerView
                         previewAreaView
-                        PosterStackView(title: "몰아보기 추천! SF & 판타지 시리즈")
-                        PosterStackView(title: "초자연 현상을 다룬 한국 시리즈")
-                        PosterStackView(title: "흥미진진한 한국 드라마")
+                        // TODO: ForEach로 개선하기
+                        PosterSectionView(
+                            title: "몰아보기 추천! SF & 판타지 시리즈",
+                            images: { RandomImage.randomImages(count: 5) }
+                        )
+                        PosterSectionView(
+                            title: "초자연 현상을 다룬 한국 시리즈",
+                            images: { RandomImage.randomImages(count: 5) }
+                        )
+                        PosterSectionView(
+                            title: "흥미진진한 한국 드라마",
+                            images: { RandomImage.randomImages(count: 5) }
+                        )
+//                        ForEach(sections, id: \.self) { value in
+//                            PosterSectionView(section: value)
+//                        }
                     }
                     .frame(maxWidth: .infinity)
                     .frame(maxHeight: .infinity)
@@ -150,8 +177,6 @@ struct HomeView: View {
                     .stroke(.gray, lineWidth: 3)
             )
     }
-    
-    
 }
 
 struct TabBarItemView: View {
@@ -166,40 +191,74 @@ struct TabBarItemView: View {
     }
 }
 
-struct PosterStackView: View {
+struct PosterSectionView<T: View>: View {
+    init(title: String, images: @escaping () -> [T]) {
+        self.title = title
+        self.images = images()
+    }
+    
     let title: String
+    let images: [T]
     
     var body: some View {
         VStack(alignment: .leading) {
             Text(title)
                 .padding(4)
             ScrollView(.horizontal) {
-                HStack(spacing: 8) {
-                    PosterImageView()
-                    PosterImageView()
-                    PosterImageView()
-                    PosterImageView()
-                    PosterImageView()
-                    PosterImageView()
-                    PosterImageView()
-                    PosterImageView()
-                    PosterImageView()
-                    PosterImageView()
+                LazyHStack {
+                    ForEach(0..<images.count) { idx in
+                        NavigationLink {
+                            // TODO: 상세화면에서 랜덤이미지 호출 막기
+                            HomeDetailView(sectionTitle: title) {
+                                images[idx]
+                            }
+                        } label: {
+                            images[idx]
+                        }
+                    }
                 }
             }
             .scrollIndicators(.hidden)
         }
     }
+    
+//    let section: KiziFlixSection<some View>
+    
+//    var body: some View {
+//        VStack(alignment: .leading) {
+//            Text(section.title)
+//                .padding(4)
+//            ScrollView(.horizontal) {
+//                ForEach(0..<section.images.count) { idx in
+//                    NavigationLink {
+//                        TamagochiView()
+//                    } label: {
+////                        PosterImageView(image: section.images[idx])
+//                        section.images[idx]
+//                    }
+//                }
+//            }
+//            .scrollIndicators(.hidden)
+//        }
+//    }
 }
 
-struct PosterImageView: View {    
-    let url = URL(string: "https://picsum.photos/200/300")
-    var body: some View {
+enum RandomImage {
+    private static let url = URL(string: "https://picsum.photos/200/300")
+    
+    static func randomImages(count: Int) -> [some View] {
+        return Array(0..<count).map { _ in
+            randomImage
+        }
+    }
+    
+    private static var randomImage: some View {
         AsyncImage(url: url) { data in
             switch data {
             case .empty:
                 ProgressView()
-                    .frame(width: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/, height: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/)
+                    .frame(width: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/, height: 160)
+                    .clipShape(.rect(cornerRadius: 4))
             case .success(let image):
                 image
                     .resizable()
@@ -208,17 +267,36 @@ struct PosterImageView: View {
                     .clipShape(.rect(cornerRadius: 4))
             case .failure(let error):
                 Color.white
-                    .frame(width: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/, height: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/)
-                    .clipShape(.circle)
+                    .frame(width: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/, height: 160)
+                    .clipShape(.rect(cornerRadius: 4))
             @unknown default:
                 Color.white
-                    .frame(width: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/, height: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/)
-                    .clipShape(.circle)
+                    .frame(width: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/, height: 160)
+                    .clipShape(.rect(cornerRadius: 4))
             }
         }
     }
 }
 
+//struct KiziFlixSection<T: View>: Hashable {
+//    static func == (lhs: KiziFlixSection<T>, rhs: KiziFlixSection<T>) -> Bool {
+//        return lhs.id == rhs.id
+//    }
+//    
+//    func hash(into hasher: inout Hasher) {
+//        hasher.combine(id)
+//    }
+//    
+//    init(title: String, images: @escaping () -> [T]) {
+//        self.title = title
+//        self.images = images()
+//    }
+//    
+//    let id = UUID()
+//    let title: String
+//    let images: [T]
+//}
+            
 #Preview {
     HomeView(nickname: "kizi")
 }

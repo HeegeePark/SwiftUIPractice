@@ -11,7 +11,7 @@ import SwiftUI
 struct SwiftUIPracticeApp: App {
     var body: some Scene {
         WindowGroup {
-            SignUpView()
+            MainView(nickname: "키지")
         }
     }
 }
